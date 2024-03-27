@@ -1,0 +1,159 @@
+@use "./variables.scss" as var;
+
+.card {
+  background-color: var.$background-color-light;
+  width: 100%;
+  border-radius: 10px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+
+  h2 {
+    font-size: 22px;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .description {
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+    max-width: 22rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .walletName {
+    font-size: 16px;
+  }
+
+  .address {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.75rem 0.5rem;
+    border-radius: 14px;
+    position: relative;
+    cursor: pointer;
+    .addressText {
+      width: calc(100% - 25px);
+      font-size: 14px;
+      line-break: anywhere;
+    }
+
+    .addressCopyBtn {
+      background-color: transparent;
+      width: 22px;
+      height: 22px;
+      cursor: pointer;
+    }
+    .addressCopyText {
+      position: absolute;
+      right: 10px;
+      top: -25px;
+    }
+  }
+
+  .votes {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #909090;
+    border-radius: 12px;
+    padding: 0.25rem 1.25rem;
+    font-size: 16px;
+    width: fit-content;
+
+    .loader, .loader::before, .loader::after{
+      border-radius: 50%;
+      width: 10px;
+      height: 10px;
+      animation:loader 2s infinite ease-in-out;
+  }
+  
+  .loader{
+      margin-left: 60px;
+      color: rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      position: relative;
+      top: -10px;
+      right: 20px;
+      &::before, &::after{
+          content: "";
+          position: absolute;
+      }
+      &::before{
+          left: -20px;
+      }
+      &::after{
+          left: 20px;
+      }
+  }
+  
+  }
+
+  @media (max-width: 550px) {
+    padding: 1.5rem 0.75rem;
+    gap: 0.5rem;
+
+    h2 {
+      font-size: 18px;
+    }
+
+    .description {
+      font-size: 14px;
+    }
+
+    .walletLogo {
+      width: 100px;
+      height: 26px;
+    }
+
+    .walletName {
+      font-size: 14px;
+    }
+
+    .address {
+      padding: 0.5rem;
+
+      .addressText {
+        font-size: 12px;
+      }
+    }
+
+    .votes {
+      margin-top: 8px;
+      span {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+:global(body.dark) {
+  .card {
+    background-color: var.$background-color-dark;
+
+    .address {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+@keyframes loader{
+  0%,
+  80%,
+  100%{
+      box-shadow: 0 10px 0 -5px;
+  }
+  40% {
+      box-shadow: 0 10px 0 0;
+  }
+}
